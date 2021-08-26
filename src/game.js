@@ -1,4 +1,12 @@
-import highlightCurrentPlayer from "./main";
+import $ from 'jquery';
+import { highlightCurrentPlayer } from "./main";
+
+// when you don't do a default export you have to use {} to list all imports like:
+// import {Player, Game} from "./game";
+
+// if you use a default export you don't use the {}, like this:
+// import Game from './game';
+
 
 export default function Game(player1Object, player2Object) {
   this.player1 = player1Object;
@@ -42,9 +50,9 @@ Game.prototype.endTurn = function() {
   if (gameEndCheck === true) {
       $("#roll").hide()
       $("#hold").hide()
-      $("#winMessage").text("Congrats you won!");
+      $("#winMessage").text("Congrats you won!")
       $("#trueGameReset").show()
-  }else {
+  } else {
       this.changeCurrentPlayerValue();  
   }
   

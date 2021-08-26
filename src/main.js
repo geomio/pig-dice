@@ -5,8 +5,12 @@ import './css/styles.css';
 import Game from './game';
 import Player from "./player";
 
-// when it was in one file the syntax would have been
+// when you don't do a default export you have to use {} to list all imports like:
 // import {Player, Game} from "./game";
+
+// if you use a default export you don't use the {}, like this:
+// import Game from './game';
+
 
 export function highlightCurrentPlayer(currentPlayer) {
   if (currentPlayer === 1) {
@@ -18,7 +22,6 @@ export function highlightCurrentPlayer(currentPlayer) {
   } 
   $("#hold").hide();
 }
-
 
 // user interface below
 $(document).ready(function () {
