@@ -20,7 +20,6 @@ export function highlightCurrentPlayer(currentPlayer) {
       $("#pcPlayer").addClass("player-selected");
       $("#player").removeClass("player-selected"); 
   } 
-  $("#hold").hide();
 }
 
 // user interface below
@@ -47,11 +46,20 @@ $(document).ready(function () {
         $("#displayRoll").text(diceRollMath)
         $("#currentScoreDisplay").html("0")
         $("#currentScoreDisplay").text(currentGame.currentScore)
+        highlightCurrentPlayer(currentGame.currentPlayer)
     });
 
     $("button#hold").click(function(){
         $("#hold").hide();
-        currentGame.endTurn();
+        currentGame.addCurrentScoreToPlayer();
+        if (currentGame.checkScore() === true) {
+          $("#roll").hide()
+          $("#hold").hide()
+          $("#winMessage").text("Congrats you won!")
+          $("#trueGameReset").show()
+      } else {
+          currentGame.changeCurrentPlayerValue();
+      }
         $("#playTotalScore").text(currentGame.player1.totalScore);
         $("#pcPlayTotalScore").text(currentGame.player2.totalScore);
         highlightCurrentPlayer(currentGame.currentPlayer);

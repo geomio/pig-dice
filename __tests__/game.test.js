@@ -29,3 +29,54 @@
 //     expect(equiTriangle.checkType()).toEqual("equilateral triangle");
 //   })
 // });
+
+import Game from "./../src/game";
+import Player from "./../src/player";
+
+describe('Game', () => {
+
+  test('Game object should make a new game object with current player value of 1 and a current score of 0', () => {
+    const player1 = new Player("tom");
+    const player2 = new Player("jerry");
+    const newGame = new Game(player1, player2);
+    expect(newGame.currentPlayer).toEqual(1)
+    expect(newGame.currentScore).toEqual(0);
+  });
+  
+  test('addRollToScore should change this.current score', () => {
+    const player1 = new Player("tom");
+    const player2 = new Player("jerry");
+    const newGame = new Game(player1, player2)
+    newGame.addRollToScore(5)
+    expect(newGame.currentScore).toEqual(5);
+  });
+  
+  test('addCurrentScoreToPlayer', () => {
+    const testPlayer1 = new Player("tom");
+    const testPlayer2 = new Player("jerry");
+    const newGame = new Game(testPlayer1, testPlayer2);
+    newGame.currentScore = 8;
+    newGame.addCurrentScoreToPlayer();
+    expect(newGame.player1.totalScore).toEqual(8);
+    expect(newGame.currentScore).toEqual(0);
+  });
+  
+  test('changeCurrentPlayerValue should change current value from 1 to 2', () => {
+    const testPlayer1 = new Player("tom");
+    const testPlayer2 = new Player("jerry");
+    const newGame = new Game(testPlayer1, testPlayer2);
+    newGame.changeCurrentPlayerValue();
+    expect(newGame.currentPlayer).toEqual(2)
+  });
+  
+  test('checkScore should see is 100 is reached', () => {
+    const testPlayer1 = new Player("tom");
+    const testPlayer2 = new Player("jerry");
+    const newGame = new Game(testPlayer1, testPlayer2);
+    newGame.player1.totalScore = 100;
+    newGame.addCurrentScoreToPlayer();
+    expect(newGame.player1.totalScore).toEqual(100);
+  });  
+});
+
+
