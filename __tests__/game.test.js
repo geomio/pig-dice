@@ -1,35 +1,3 @@
-// import Triangle from '../src/triangle.js';
-
-// describe('Triangle', () => {
-
-//   test('should correctly create a triangle object with three lengths', () => {
-//     const triangle = new Triangle(2, 4, 5);
-//     expect(triangle.side1).toEqual(2);
-//     expect(triangle.side2).toEqual(4);
-//     expect(triangle.side3).toEqual(5);
-//   });
-  
-//   test('should correctly find wether three lengths are not a triangle', () => {
-//     const notTriangle = new Triangle(3, 9, 22);
-//     expect(notTriangle.checkType()).toEqual("not a triangle");
-//   })
-  
-//   test('should correctly determine wether three lengths make a scalene triangle', () => {
-//     const scalTriangle = new Triangle(4, 5, 7)
-//     expect(scalTriangle.checkType()).toEqual("scalene triangle");
-//   })
-  
-//   test('should determine wether three length make isosceles triangle', () => {
-//     const isocTriangle = new Triangle(5, 5, 7)
-//     expect(isocTriangle.checkType()).toEqual("isosceles triangle");
-//   })
-  
-//   test('should determine wether three length make equilateral triangle', () => {
-//     const equiTriangle = new Triangle(5, 5, 5)
-//     expect(equiTriangle.checkType()).toEqual("equilateral triangle");
-//   })
-// });
-
 import Game from "./../src/game";
 import Player from "./../src/player";
 
@@ -74,9 +42,27 @@ describe('Game', () => {
     const testPlayer2 = new Player("jerry");
     const newGame = new Game(testPlayer1, testPlayer2);
     newGame.player1.totalScore = 100;
-    newGame.addCurrentScoreToPlayer();
-    expect(newGame.player1.totalScore).toEqual(100);
+    newGame.player2.totalScore = 100;
+    newGame.checkScore();
+    expect(newGame.checkScore()).toEqual(true);
+  });
+  
+  test('checkScore should see is 100 is not reached', () => {
+    const testPlayer1 = new Player("tom");
+    const testPlayer2 = new Player("jerry");
+    const newGame = new Game(testPlayer1, testPlayer2);
+    newGame.player1.totalScore = 10;
+    newGame.player2.totalScore = 10;
+    newGame.checkScore();
+    expect(newGame.checkScore()).toEqual(false);
   });  
+  
+  test('rollDice should return a number between 0-7 excluding 0 and 7', () => {
+    const newGame = new Game();
+    newGame.rollDie();
+    expect(newGame.rollDie()).toBeGreaterThanOrEqual(1);
+    expect(newGame.rollDie()).toBeLessThan(7);
+  });
 });
 
 

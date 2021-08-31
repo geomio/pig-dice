@@ -1,5 +1,4 @@
 import $ from 'jquery';
-// import { highlightCurrentPlayer } from "./main";
 export default function Game(player1Object, player2Object) {
   this.player1 = player1Object;
   this.player2 = player2Object;
