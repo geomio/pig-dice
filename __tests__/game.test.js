@@ -11,12 +11,20 @@ describe('Game', () => {
     expect(newGame.currentScore).toEqual(0);
   });
   
-  test('addRollToScore should change this.current score', () => {
+  test('addRollToScore should change this.current score if 2-6 are rolled', () => {
     const player1 = new Player("tom");
     const player2 = new Player("jerry");
     const newGame = new Game(player1, player2)
     newGame.addRollToScore(5)
     expect(newGame.currentScore).toEqual(5);
+  });
+  
+  test('addRollToScore should change this.current score to 0 if 1 is rolled', () => {
+    const player1 = new Player("tom");
+    const player2 = new Player("jerry");
+    const newGame = new Game(player1, player2)
+    newGame.addRollToScore(1)
+    expect(newGame.currentScore).toEqual(0);
   });
   
   test('addCurrentScoreToPlayer will add the current score to player', () => {
