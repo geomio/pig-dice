@@ -19,7 +19,7 @@ describe('Game', () => {
     expect(newGame.currentScore).toEqual(5);
   });
   
-  test('addCurrentScoreToPlayer', () => {
+  test('addCurrentScoreToPlayer will add the current score to player', () => {
     const testPlayer1 = new Player("tom");
     const testPlayer2 = new Player("jerry");
     const newGame = new Game(testPlayer1, testPlayer2);
